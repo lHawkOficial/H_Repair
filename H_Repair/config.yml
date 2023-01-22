@@ -40,9 +40,7 @@ Config:
   notifications:
     # preencha aqui todas as vezes que vai ser enviado a notificação para o jogador.
     percents:
-    - '20'
-    - '10'
-    - '5'
+    - '15'
 # Configuração do menu principal
 MenuMain:
   name: "&7Reparar"
@@ -123,6 +121,7 @@ Mensagens:
   fixedItemsBar: "&0Voce acabou de reparar todos os item(s) do seu inventário!"
   notification: "{tag} &eUm dos seus itens chegou á &6{durabilidade} &ede durabilidade, use &6/reparar&e!"
   notificationTitle: "&e&lITEM QUEBRANDO<nl>&7use /reparar"
+  notificationBar: "&0Um novo item foi liberado para ser reparado use /reparar!"
   fixedAutoChat: "{tag} &aVoce reparou um total de &f{total} Item(s) &aautomaticamente por &e{valor}&a!"
   fixedAutoTitle: "&e&lREPARADOR AUTOMATICO<nl>&7item(s) reparado(s)"
   fixedAutoBar: "&0Você acabou de reparar automaticamente todos o(s) item(s) do seu inventário!"

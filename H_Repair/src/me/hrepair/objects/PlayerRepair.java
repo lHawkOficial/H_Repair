@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -15,9 +16,13 @@ import org.bukkit.metadata.FixedMetadataValue;
 import lombok.Getter;
 import lombok.Setter;
 import me.hawkcore.utils.Save;
+import me.hawkcore.utils.boosbar.BossBar;
 import me.hrepair.Core;
+import me.hrepair.objects.configs.ConfigNotifications;
 import me.hrepair.objects.managers.Manager;
+import me.hrepair.objects.managers.NotificationManager;
 import me.hrepair.utils.API;
+import me.hrepair.utils.Mensagens;
 
 @Getter
 @Setter
@@ -86,6 +91,25 @@ public class PlayerRepair {
 			items.add(item);
 		}
 		return items;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void checkItemRepair() {
+		Player p = getPlayer();
+		if (p == null) return;
+		HashMap<ItemStack, Integer> map = getItemsPercents();
+		for(ItemStack item : map.keySet()) {
+			int percent = map.get(item);
+			for(int value : ConfigNotifications.get().getPercents()) {
+				if (percent <= value && NotificationManager.get().isToNotificate(p, item, percent)) {
+					p.sendMessage(Mensagens.get().getNotification().replace("{durabilidade}", percent+"%"));
+					p.sendTitle(Mensagens.get().getNotificationTitle().split("<nl>")[0], Mensagens.get().getNotificationTitle().split("<nl>")[1]);
+					BossBar.send(p, Mensagens.get().getNotificationBar());
+					p.playSound(p.getLocation(), Sound.NOTE_SNARE_DRUM, 0.5f, 0.5f);
+					return;
+				}
+			}
+		}
 	}
 	
 	public void save() {

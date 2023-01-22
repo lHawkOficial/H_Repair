@@ -84,7 +84,7 @@ public class Core extends JavaPlugin {
 			PlayerRepair.check(all);
 		}
 		if (timer != null) timer.cancel();
-		timer = new Task(new Timer()).run(10);
+		timer = new Task(new Timer()).run(5);
 	}
 	
 	public Economy getEcon() {return me.hawkcore.Core.getInstance().getEcon();}

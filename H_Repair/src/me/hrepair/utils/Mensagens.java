@@ -24,9 +24,11 @@ public class Mensagens {
 	notificationTitle,
 	fixedAutoChat,
 	fixedAutoTitle,
-	fixedAutoBar;
+	fixedAutoBar,
+	notificationBar;
 	
 	public Mensagens() {
+		notificationBar = replace("notificationBar");
 		fixedAutoBar = replace("fixedAutoBar");
 		fixedAutoTitle = replace("fixedAutoTitle");
 		fixedAutoChat = replace("fixedAutoChat");

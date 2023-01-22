@@ -2,7 +2,7 @@ package me.hrepair.utils;
 
 import org.bukkit.entity.Player;
 
-import me.hawkcore.utils.boosbar.BossBar;
+import me.hawkcore.utils.API;
 import me.hrepair.objects.PlayerRepair;
 import me.hrepair.objects.managers.Manager;
 
@@ -16,7 +16,8 @@ public class Timer implements Runnable {
 		for(PlayerRepair pr : manager.getPlayers()) {
 			Player p = pr.getPlayer();
 			if (p == null) continue;
-			BossBar.send(p, "§6"+pr.getItemPercentHand() + "%");
+			pr.checkItemRepair();
+			API.get().sendActionBarMessage(p, "§6"+pr.getItemPercentHand() + "%");
 		}
 		
 	}
