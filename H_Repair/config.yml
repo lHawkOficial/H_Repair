@@ -1,0 +1,15 @@
+# Permissions: H_Reparar.Adm
+# Configuração geral do plugin
+Config:
+  
+  # prefixo do seu servidor
+  tag: "&7[Reparar]"
+  
+# Configuração do menu principal
+MenuMain:
+  name: "&7Reparar"
+  row: 3
+# Configure aqui todas as mensagens do plugin
+Mensagens:
+  ReloadCommand: "{tag} &aA Configuração do plugin foi recarregada!"
+  ErrorMenu: "{tag} &cOcorreu um erro ao tentar acessar o menu de reparo, porfavor contate um administrador!"

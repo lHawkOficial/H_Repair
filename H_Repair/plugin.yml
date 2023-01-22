@@ -1,0 +1,11 @@
+name: H_Repair
+version: 0.1
+author: lHawk_
+main: me.hrepair.Core
+depend: [HawkCore]
+commands:
+  reparar:
+    description: abrir o gui para reparar todos os item(s) do seu inventario ou apenas o item da sua mão!
+    aliases: [repair, fix]
+  repairall:
+    description: reparar todos os item(s) do seu inventario!
