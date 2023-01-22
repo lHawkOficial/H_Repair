@@ -100,13 +100,13 @@ public class MenuMain {
 			
 			Item item = new Item(iconFixItem.build().clone());
 			List<String> lore = new ArrayList<>(item.getLore());
-			lore.replaceAll(l -> l.replace("{valor}", Core.getInstance().getEco().format(0)));
+			lore.replaceAll(l -> l.replace("{valor}", Core.getInstance().getEcon().format(0)));
 			item.setLore(lore);
 			inv.setItem(iconFixItem.getSlot(), item.build().clone());
 			
 			item = new Item(iconFixAll.build().clone());
 			lore = new ArrayList<>(item.getLore());
-			lore.replaceAll(l -> l.replace("{valor}", Core.getInstance().getEco().format(0)));
+			lore.replaceAll(l -> l.replace("{valor}", Core.getInstance().getEcon().format(0)));
 			item.setLore(lore);
 			inv.setItem(iconFixAll.getSlot(), item.build().clone());
 			

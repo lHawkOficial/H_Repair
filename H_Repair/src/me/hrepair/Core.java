@@ -1,6 +1,7 @@
 package me.hrepair;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import lombok.Getter;
-import me.hawkcore.tasks.Task;
 import me.hrepair.commands.CommandRepair;
 import me.hrepair.listeners.MenuListeners;
 import me.hrepair.listeners.PlayersListeners;
@@ -28,7 +28,6 @@ public class Core extends JavaPlugin {
 	@Getter
 	private static Core instance;
 	private String tag,version = "§d"+getDescription().getVersion();
-	private Economy eco;
 	private Manager manager;
 	private API api;
 	private Mensagens mensagens;
@@ -40,7 +39,6 @@ public class Core extends JavaPlugin {
 		instance = this;
 		saveDefaultConfig();
 		reloadPlugin();
-		Task.run(()-> eco = me.hawkcore.Core.getInstance().getEcon()); 
 		
 		new CommandRepair();
 		List<Listener> events = new ArrayList<>();
@@ -79,6 +77,8 @@ public class Core extends JavaPlugin {
 			PlayerRepair.check(all);
 		}
 	}
+	
+	public Economy getEcon() {return me.hawkcore.Core.getInstance().getEcon();}
 	
 	public void sendConsole(String msg) {Bukkit.getConsoleSender().sendMessage(msg.replace("&", "§"));}
 
