@@ -7,9 +7,43 @@ import me.hrepair.Core;
 public class Mensagens {
 
 	private String ReloadCommand,
-	ErrorMenu;
+	ErrorMenu,
+	PermissionCommand,
+	PermissionError,
+	CommandWorld,
+	noItemHand,
+	noItemInventory,
+	noMoney,
+	fixedItemChat,
+	fixedItemTitle,
+	fixedItemBar,
+	fixedItemsChat,
+	fixedItemsTitle,
+	fixedItemsBar,
+	notification,
+	notificationTitle,
+	fixedAutoChat,
+	fixedAutoTitle,
+	fixedAutoBar;
 	
 	public Mensagens() {
+		fixedAutoBar = replace("fixedAutoBar");
+		fixedAutoTitle = replace("fixedAutoTitle");
+		fixedAutoChat = replace("fixedAutoChat");
+		notificationTitle = replace("notificationTitle");
+		notification = replace("notification");
+		fixedItemsBar = replace("fixedItemsBar");
+		fixedItemsTitle = replace("fixedItemsTitle");
+		fixedItemsChat = replace("fixedItemsChat");
+		fixedItemBar = replace("fixedItemBar");
+		fixedItemTitle = replace("fixedItemTitle");
+		fixedItemChat = replace("fixedItemChat");
+		noMoney = replace("noMoney");
+		noItemInventory = replace("noItemInventory");
+		noItemHand = replace("noItemHand");
+		CommandWorld = replace("CommandWorld");
+		PermissionError = replace("PermissionError");
+		PermissionCommand = replace("PermissionCommand");
 		ErrorMenu = replace("ErrorMenu");
 		ReloadCommand = replace("ReloadCommand");
 	}

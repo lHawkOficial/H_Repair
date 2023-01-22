@@ -1,15 +1,48 @@
+#=============================
+#╔╗╔╗╔═╗╔╗─╔╦╗╔══╗╔══╗╔═╦╗╔══╗
+#║╚╝║║╬║║║─║║║║╔═╣╚║║╝║║║║║══╣
+#║╔╗║║╔╝║╚╗║║║║╚╗║╔║║╗║║║║╠══║
+#╚╝╚╝╚╝─╚═╝╚═╝╚══╝╚══╝╚╩═╝╚══╝
+#─────────────────────────────
+# Discord: https://discord.gg/u8gyeJgdj6
 # Permissions: H_Reparar.Adm
-# Configuração geral do plugin
+#=============================
+# Configuração geral do plugin:
 Config:
   
-  # prefixo do seu servidor
+  # prefixo do seu servidor.
   tag: "&7[Reparar]"
   
-  # Configuração geral dos status
+  # Configuração geral dos status.
   status:
     ativado: "&a&lATIVADO"
     desativado: "&c&lDESATIVADO"
+    
+  # Configuração onde será permitido utilizar o comando de reparar.
+  worlds:
+  - 'world'
   
+  # Configuração geral da durabilidade dos itens.
+  durability:
+    # vai ser multiplicado pela durabilidade do item
+    cost_default: 1.5
+    # configure aqui o custo de durabilidade para cada item separadamente caso precise
+    # 'ID>DATA:VALOR'
+    cost_item:
+    - '276>0:2'
+    # configure aqui o custo adicional á encantamentos.
+    # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/enchantments/Enchantment.html
+    # 'ENCANTAMENTO:VALOR'
+    cost_enchant:
+    - 'damage_all:0.5'
+    
+  # Configuração geral das notificações
+  notifications:
+    # preencha aqui todas as vezes que vai ser enviado a notificação para o jogador.
+    percents:
+    - '20'
+    - '10'
+    - '5'
 # Configuração do menu principal
 MenuMain:
   name: "&7Reparar"
@@ -50,8 +83,8 @@ MenuMain:
       lore:
       - ' '
       - '&7Clique para notificar quando os itens'
-      - '&7que estão no seu inventário chagarem'
-      - '&à {durabilidade} de durabilidade.'
+      - '&7que estão no seu inventário chegarem'
+      - 'à &a{durabilidade} &7de durabilidade.'
       - ' '
       - '&7Status: {status}'
       - ' '
@@ -65,7 +98,7 @@ MenuMain:
       - ' '
       - '&7Clique para reparar automaticamente'
       - '&7todos os itens que estiverem no seu'
-      - '&7inventário quando chegarem à {durabilidade} de'
+      - '&7inventário quando chegarem à &a{durabilidade} &7de'
       - '&7durabilitade.'
       - ' '
       - '&7Status: {status}'
@@ -76,3 +109,20 @@ MenuMain:
 Mensagens:
   ReloadCommand: "{tag} &aA Configuração do plugin foi recarregada!"
   ErrorMenu: "{tag} &cOcorreu um erro ao tentar acessar o menu de reparo, porfavor contate um administrador!"
+  PermissionCommand: "{tag} &cVoce nao tem permissao para executar este comando!"
+  PermissionError: "{tag} &cVoce nao possui a permissao correta para poder fazer isso!"
+  CommandWorld: "{tag} &cVoce nao pode executar o comando de reparar neste mundo!"
+  noItemHand: "{tag} &cVoce nao possui nenhum item segurado para poder reparar!"
+  noItemInventory: "{tag} &cVoce não possui nenhum item no inventario para que possa ser reparado!"
+  noMoney: "{tag} &cVoce não possui saldo o suficiente para poder reparar este(s) item(s)!"
+  fixedItemChat: "{tag} &aO item da sua mão foi reparado com sucesso com o valor de {valor}!"
+  fixedItemTitle: "&e&lITEM REPARADO<nl>&7o item na sua mão foi reparado"
+  fixedItemBar: "&0Voce acabou de reparar o item que esta na sua mão!"
+  fixedItemsChat: "{tag} &aVoce reparou um total de &f{total} Item(s) &apor &e{valor}&a!"
+  fixedItemsTitle: "&e&lITEMS REPARADOS<nl>&7voce reparou seu inventário"
+  fixedItemsBar: "&0Voce acabou de reparar todos os item(s) do seu inventário!"
+  notification: "{tag} &eUm dos seus itens chegou á &6{durabilidade} &ede durabilidade, use &6/reparar&e!"
+  notificationTitle: "&e&lITEM QUEBRANDO<nl>&7use /reparar"
+  fixedAutoChat: "{tag} &aVoce reparou um total de &f{total} Item(s) &aautomaticamente por &e{valor}&a!"
+  fixedAutoTitle: "&e&lREPARADOR AUTOMATICO<nl>&7item(s) reparado(s)"
+  fixedAutoBar: "&0Você acabou de reparar automaticamente todos o(s) item(s) do seu inventário!"

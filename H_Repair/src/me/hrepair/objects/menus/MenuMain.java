@@ -15,7 +15,7 @@ import me.hawkcore.utils.API;
 import me.hawkcore.utils.Glass;
 import me.hrepair.Core;
 import me.hrepair.objects.PlayerRepair;
-import me.hrepair.utils.ConfigGeral;
+import me.hrepair.objects.configs.ConfigGeral;
 import me.hrepair.utils.Item;
 import me.hrepair.utils.Mensagens;
 

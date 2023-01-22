@@ -11,15 +11,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import lombok.Getter;
+import me.hawkcore.tasks.Task;
 import me.hrepair.commands.CommandRepair;
 import me.hrepair.listeners.MenuListeners;
 import me.hrepair.listeners.PlayersListeners;
 import me.hrepair.objects.PlayerRepair;
+import me.hrepair.objects.configs.ConfigGeral;
 import me.hrepair.objects.managers.Manager;
+import me.hrepair.objects.managers.NotificationManager;
 import me.hrepair.objects.menus.MenuMain;
 import me.hrepair.utils.API;
-import me.hrepair.utils.ConfigGeral;
 import me.hrepair.utils.Mensagens;
+import me.hrepair.utils.Timer;
 import net.milkbowl.vault.economy.Economy;
 
 @Getter
@@ -33,6 +36,8 @@ public class Core extends JavaPlugin {
 	private Mensagens mensagens;
 	private MenuMain menumain;
 	private ConfigGeral configgeral;
+	private Task timer;
+	private NotificationManager notificationmanager;
 	
 	@Override
 	public void onEnable() {
@@ -53,6 +58,7 @@ public class Core extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
+		timer.cancel();
 		sendConsole(" ");
 		sendConsole(tag + " &cH_Repair desligado com sucesso! &6[Author lHawk_] " + version);
 		sendConsole(" ");
@@ -66,6 +72,7 @@ public class Core extends JavaPlugin {
 		mensagens = new Mensagens();
 		menumain = new MenuMain();
 		configgeral = new ConfigGeral();
+		notificationmanager = new NotificationManager();
 		File folder = new File(getDataFolder() + "/players");
 		if (!folder.exists()) folder.mkdir();
 		for(File file : folder.listFiles()) {
@@ -76,6 +83,8 @@ public class Core extends JavaPlugin {
 			if (all.hasMetadata("playerrepair")) all.removeMetadata("playerrepair", this);
 			PlayerRepair.check(all);
 		}
+		if (timer != null) timer.cancel();
+		timer = new Task(new Timer()).run(10);
 	}
 	
 	public Economy getEcon() {return me.hawkcore.Core.getInstance().getEcon();}
