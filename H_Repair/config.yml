@@ -5,10 +5,73 @@ Config:
   # prefixo do seu servidor
   tag: "&7[Reparar]"
   
+  # Configuração geral dos status
+  status:
+    ativado: "&a&lATIVADO"
+    desativado: "&c&lDESATIVADO"
+  
 # Configuração do menu principal
 MenuMain:
   name: "&7Reparar"
   row: 3
+  Icons:
+    iconFixItem:
+      ID: 145>0
+      glow: false
+      slot: 11
+      permission: 'h_reparar.item'
+      name: '&aReparar item'
+      lore:
+      - ' '
+      - 'Custo: {valor}'
+      - ' '
+      - '&7Clique para reparar o item que'
+      - '&7está na sua mão.'
+      - ' '
+    iconFixAll:
+      ID: 145>2
+      glow: false
+      slot: 13
+      permission: 'h_reparar.tudo'
+      name: '&aReparar tudo'
+      lore:
+      - ' '
+      - 'Custo: {valor}'
+      - ' '
+      - '&7Clique para reparar todos os itens'
+      - '&7que estão no seu inventário.'
+      - ' '
+    iconNotifications:
+      ID: 399>0
+      glow: false
+      slot: 15
+      permission: 'h_reparar.notificar'
+      name: '&bNotificar reparação'
+      lore:
+      - ' '
+      - '&7Clique para notificar quando os itens'
+      - '&7que estão no seu inventário chagarem'
+      - '&à {durabilidade} de durabilidade.'
+      - ' '
+      - '&7Status: {status}'
+      - ' '
+    iconFixAuto:
+      ID: 264>0
+      glow: true
+      slot: 17
+      permission: 'h_reparar.auto'
+      name: '&6Reparar automaticamente'
+      lore:
+      - ' '
+      - '&7Clique para reparar automaticamente'
+      - '&7todos os itens que estiverem no seu'
+      - '&7inventário quando chegarem à {durabilidade} de'
+      - '&7durabilitade.'
+      - ' '
+      - '&7Status: {status}'
+      - ' '
+  # Configuração dos vidros no menu
+  Glass: []
 # Configure aqui todas as mensagens do plugin
 Mensagens:
   ReloadCommand: "{tag} &aA Configuração do plugin foi recarregada!"

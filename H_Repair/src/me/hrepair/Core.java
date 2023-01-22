@@ -12,11 +12,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import lombok.Getter;
 import me.hawkcore.tasks.Task;
 import me.hrepair.commands.CommandRepair;
+import me.hrepair.listeners.MenuListeners;
 import me.hrepair.listeners.PlayersListeners;
 import me.hrepair.objects.PlayerRepair;
 import me.hrepair.objects.managers.Manager;
 import me.hrepair.objects.menus.MenuMain;
 import me.hrepair.utils.API;
+import me.hrepair.utils.ConfigGeral;
 import me.hrepair.utils.Mensagens;
 import net.milkbowl.vault.economy.Economy;
 
@@ -31,6 +33,7 @@ public class Core extends JavaPlugin {
 	private API api;
 	private Mensagens mensagens;
 	private MenuMain menumain;
+	private ConfigGeral configgeral;
 	
 	@Override
 	public void onEnable() {
@@ -42,6 +45,7 @@ public class Core extends JavaPlugin {
 		new CommandRepair();
 		List<Listener> events = new ArrayList<>();
 		events.add(new PlayersListeners());
+		events.add(new MenuListeners());
 		events.forEach(event -> Bukkit.getPluginManager().registerEvents(event, this));
 		
 		sendConsole(" ");
@@ -63,6 +67,7 @@ public class Core extends JavaPlugin {
 		manager = new Manager();
 		mensagens = new Mensagens();
 		menumain = new MenuMain();
+		configgeral = new ConfigGeral();
 		File folder = new File(getDataFolder() + "/players");
 		if (!folder.exists()) folder.mkdir();
 		for(File file : folder.listFiles()) {
