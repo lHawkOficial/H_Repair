@@ -13,12 +13,14 @@ import me.hrepair.Core;
 public class ConfigDurability {
 
 	private double cost_default;
+	private int autoFix;
 	private HashMap<String, Double> items = new HashMap<>();
 	private HashMap<Enchantment, Double> enchantments = new HashMap<>();
 	
 	public ConfigDurability() {
 		FileConfiguration config = Core.getInstance().getConfig();
 		ConfigurationSection section = config.getConfigurationSection("Config.durability");
+		autoFix = section.getInt("autoFix");
 		for(String ID : section.getStringList("cost_item")) {
 			try {
 				items.put(ID.split(":")[0], Double.valueOf(ID.split(":")[1]));

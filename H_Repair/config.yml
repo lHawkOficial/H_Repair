@@ -24,6 +24,8 @@ Config:
   
   # Configuração geral da durabilidade dos itens.
   durability:
+    # Configure aqui a porcentagem que os item(s) serão reparados automaticamente
+    autoFix: 10
     # vai ser multiplicado pela durabilidade do item
     cost_default: 1.5
     # configure aqui o custo de durabilidade para cada item separadamente caso precise

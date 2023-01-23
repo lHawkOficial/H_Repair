@@ -15,7 +15,9 @@ import me.hawkcore.utils.API;
 import me.hawkcore.utils.Glass;
 import me.hrepair.Core;
 import me.hrepair.objects.PlayerRepair;
+import me.hrepair.objects.configs.ConfigDurability;
 import me.hrepair.objects.configs.ConfigGeral;
+import me.hrepair.objects.configs.ConfigNotifications;
 import me.hrepair.utils.Item;
 import me.hrepair.utils.Mensagens;
 
@@ -70,7 +72,7 @@ public class MenuMain {
 		if (section.getBoolean("glow")) item.setGlow();
 		item.setPermission(section.getString("permission"));
 		lore = new ArrayList<>(section.getStringList("lore"));
-		lore.replaceAll(l -> l.replace("&", "§"));
+		lore.replaceAll(l -> l.replace("&", "§").replace("{durabilidade}", ConfigDurability.get().getAutoFix() + "%"));
 		item.setLore(lore);
 		this.iconFixAuto = item;
 		
@@ -82,7 +84,7 @@ public class MenuMain {
 		if (section.getBoolean("glow")) item.setGlow();
 		item.setPermission(section.getString("permission"));
 		lore = new ArrayList<>(section.getStringList("lore"));
-		lore.replaceAll(l -> l.replace("&", "§"));
+		lore.replaceAll(l -> l.replace("&", "§").replace("{durabilidade}", ConfigNotifications.get().getPercents().isEmpty() ? "N.A" : ConfigNotifications.get().getPercents().get(0) + "%"));
 		item.setLore(lore);
 		this.iconNotifications = item;
 		

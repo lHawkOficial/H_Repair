@@ -30,7 +30,7 @@ public class Core extends JavaPlugin {
 	
 	@Getter
 	private static Core instance;
-	private String tag,version = "§d"+getDescription().getVersion();
+	private String tag,version = "§dv"+getDescription().getVersion();
 	private Manager manager;
 	private API api;
 	private Mensagens mensagens;
@@ -70,9 +70,9 @@ public class Core extends JavaPlugin {
 		api = new API();
 		manager = new Manager();
 		mensagens = new Mensagens();
-		menumain = new MenuMain();
 		configgeral = new ConfigGeral();
 		notificationmanager = new NotificationManager();
+		menumain = new MenuMain();
 		File folder = new File(getDataFolder() + "/players");
 		if (!folder.exists()) folder.mkdir();
 		for(File file : folder.listFiles()) {
