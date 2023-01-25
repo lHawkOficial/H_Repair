@@ -1,6 +1,7 @@
 package me.hrepair.objects;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +20,7 @@ import lombok.Setter;
 import me.hawkcore.utils.Save;
 import me.hawkcore.utils.boosbar.BossBar;
 import me.hrepair.Core;
+import me.hrepair.objects.configs.ConfigDurability;
 import me.hrepair.objects.configs.ConfigNotifications;
 import me.hrepair.objects.managers.Manager;
 import me.hrepair.objects.managers.NotificationManager;
@@ -91,6 +94,39 @@ public class PlayerRepair {
 			items.add(item);
 		}
 		return items;
+	}
+	
+	public double getValueRepair() {
+		double valor = 0;
+		List<ItemStack> items = getItems();
+		for(ItemStack item : items) valor+=getValueItem(item);
+		return valor;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public double getValueItem(ItemStack item) {
+		if (item == null || item.getType() == Material.AIR || !API.get().canRepair(item)) return 0;
+		double valor = item.getDurability()*(ConfigDurability.get().getItems().containsKey(item.getTypeId() + ">"+item.getData().getData()) ? ConfigDurability.get().getItems().get(item.getTypeId() + ">"+item.getData().getData()) : ConfigDurability.get().getCost_default());
+		for(Enchantment enchant : ConfigDurability.get().getEnchantments().keySet()) {
+			if (!item.getEnchantments().containsKey(enchant)) continue;
+			valor+=ConfigDurability.get().getEnchantments().get(enchant);
+		}
+		return valor*item.getAmount();
+	}
+	
+	public void repairItem(ItemStack item) {
+		Player p = getPlayer();
+		if (p == null) return;
+		item.setDurability((short)0);
+		p.updateInventory();
+	}
+	
+	public void repairAllItens() {
+		Player p = getPlayer();
+		if (p == null) return;
+		List<ItemStack> items = getItems();
+		items.forEach(item -> item.setDurability((short)0));
+		p.updateInventory();
 	}
 	
 	@SuppressWarnings("deprecation")

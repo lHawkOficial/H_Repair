@@ -25,9 +25,12 @@ public class Mensagens {
 	fixedAutoChat,
 	fixedAutoTitle,
 	fixedAutoBar,
-	notificationBar;
+	notificationBar,
+	itemError;
 	
 	public Mensagens() {
+		itemError = replace("itemError");
+		noItemHand = replace("noItemHand");
 		notificationBar = replace("notificationBar");
 		fixedAutoBar = replace("fixedAutoBar");
 		fixedAutoTitle = replace("fixedAutoTitle");

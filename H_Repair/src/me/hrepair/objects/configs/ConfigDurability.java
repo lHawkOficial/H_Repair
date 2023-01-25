@@ -21,6 +21,7 @@ public class ConfigDurability {
 		FileConfiguration config = Core.getInstance().getConfig();
 		ConfigurationSection section = config.getConfigurationSection("Config.durability");
 		autoFix = section.getInt("autoFix");
+		cost_default = section.getDouble("cost_default");
 		for(String ID : section.getStringList("cost_item")) {
 			try {
 				items.put(ID.split(":")[0], Double.valueOf(ID.split(":")[1]));

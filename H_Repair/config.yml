@@ -127,3 +127,4 @@ Mensagens:
   fixedAutoChat: "{tag} &aVoce reparou um total de &f{total} Item(s) &aautomaticamente por &e{valor}&a!"
   fixedAutoTitle: "&e&lREPARADOR AUTOMATICO<nl>&7item(s) reparado(s)"
   fixedAutoBar: "&0Você acabou de reparar automaticamente todos o(s) item(s) do seu inventário!"
+  itemError: "{tag} &cEste(s) item(s) não pode(m) ser reparado(s)."
