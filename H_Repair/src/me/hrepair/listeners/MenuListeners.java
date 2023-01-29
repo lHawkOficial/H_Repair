@@ -1,5 +1,7 @@
 package me.hrepair.listeners;
 
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -87,6 +89,37 @@ public class MenuListeners implements Listener {
 						}
 					} else {
 						p.sendMessage(Mensagens.get().getNoItemHand());
+						p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, 1);
+						return;
+					}
+				}
+				if (e.getCurrentItem().getItemMeta().getDisplayName().equals(menu.getIconFixAll().getDisplayName())) {
+					p.closeInventory();
+					if (!p.hasPermission(menu.getIconFixAll().getPermission())){
+						p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, 1);
+						p.sendMessage(Mensagens.get().getPermissionError());
+						return;
+					}
+					List<ItemStack> items = pr.getItems();
+					if (!items.isEmpty()) {
+						double valor = pr.getValueRepair();
+						if (Eco.get().has(p, valor)) {
+							int total = pr.getTotalRepair();
+							Eco.get().withdrawPlayer(p, valor);
+							pr.repairAllItens();
+							p.sendMessage(Mensagens.get().getFixedItemsChat().replace("{valor}", Eco.get().format(valor)).replace("{total}", String.valueOf(total)));
+							p.sendTitle(Mensagens.get().getFixedItemsTitle().split("<nl>")[0], Mensagens.get().getFixedItemsTitle().split("<nl>")[1]);
+							BossBar.send(p, Mensagens.get().getFixedItemsBar().replace("{total}", String.valueOf(total)).replace("{valor}", Eco.get().format(valor)));
+							p.playSound(p.getLocation(), Sound.LEVEL_UP, 0.5f, 10);
+							p.updateInventory();
+							return;
+						} else {
+							p.sendMessage(Mensagens.get().getNoMoney());
+							p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, 1);
+							return;
+						}
+					} else {
+						p.sendMessage(Mensagens.get().getNoItemInventory());
 						p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, 1);
 						return;
 					}

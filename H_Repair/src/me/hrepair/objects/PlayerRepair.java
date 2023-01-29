@@ -75,6 +75,12 @@ public class PlayerRepair {
 		return map;
 	}
 	
+	public int getItemPercent(ItemStack item) {
+		int total = item.getType().getMaxDurability();
+		int value = item.getDurability();
+		return 100 - (value * 100 / total);
+	}
+	
 	public int getItemPercentHand() {
 		Player p = getPlayer();
 		if (p == null) return -1;
@@ -100,6 +106,16 @@ public class PlayerRepair {
 		double valor = 0;
 		List<ItemStack> items = getItems();
 		for(ItemStack item : items) valor+=getValueItem(item);
+		return valor;
+	}
+	
+	public double getValueRepair(int percent) {
+		double valor = 0;
+		List<ItemStack> items = getItems();
+		for(ItemStack item : items) {
+			if (getItemPercent(item) <= percent)
+			valor+=getValueItem(item);
+		}
 		return valor;
 	}
 	
@@ -129,6 +145,17 @@ public class PlayerRepair {
 		p.updateInventory();
 	}
 	
+	public void repairAllItens(int percent) {
+		Player p = getPlayer();
+		if (p == null) return;
+		List<ItemStack> items = getItems();
+		items.forEach(item -> {
+			if (getItemPercent(item) <= percent)
+			item.setDurability((short)0);
+		});
+		p.updateInventory();
+	}
+	
 	@SuppressWarnings("deprecation")
 	public void checkItemRepair() {
 		Player p = getPlayer();
@@ -146,6 +173,33 @@ public class PlayerRepair {
 				}
 			}
 		}
+	}
+	
+	public List<ItemStack> getItems(int percent) {
+		List<ItemStack> items = getItems();
+		List<ItemStack> lista = new ArrayList<>();
+		for(ItemStack item : items) {
+			if (getItemPercent(item) <= percent)
+			lista.add(item);
+		}
+		return lista;
+	}
+	
+	public int getTotalRepair() {
+		int total = 0;
+		List<ItemStack> items = getItems();
+		for(ItemStack item : items) total += item.getAmount();
+		return total;
+	}
+	
+	public int getTotalRepair(int percent) {
+		int total = 0;
+		List<ItemStack> items = getItems();
+		for(ItemStack item : items) {
+			if (getItemPercent(item) <= percent)
+			total += item.getAmount();
+		}
+		return total;
 	}
 	
 	public void save() {
