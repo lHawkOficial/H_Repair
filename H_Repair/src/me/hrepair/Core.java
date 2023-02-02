@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import lombok.Getter;
 import me.hawkcore.tasks.Task;
 import me.hrepair.commands.CommandRepair;
+import me.hrepair.commands.CommandRepairAll;
 import me.hrepair.listeners.MenuListeners;
 import me.hrepair.listeners.PlayersListeners;
 import me.hrepair.objects.PlayerRepair;
@@ -46,6 +47,7 @@ public class Core extends JavaPlugin {
 		reloadPlugin();
 		
 		new CommandRepair();
+		new CommandRepairAll();
 		List<Listener> events = new ArrayList<>();
 		events.add(new PlayersListeners());
 		events.add(new MenuListeners());

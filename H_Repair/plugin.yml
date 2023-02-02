@@ -8,4 +8,5 @@ commands:
     description: abrir o gui para reparar todos os item(s) do seu inventario ou apenas o item da sua mão!
     aliases: [repair, fix]
   repairall:
+    aliases: [reparartudo,fixall]
     description: reparar todos os item(s) do seu inventario!

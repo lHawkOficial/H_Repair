@@ -19,12 +19,14 @@ public class ConfigGeral {
 	statusDesativado;
 	private ConfigDurability configdurability;
 	private ConfigNotifications confignotifications;
+	private Boolean includeArmor;
 	
 	public ConfigGeral() {
 		configdurability = new ConfigDurability();
 		confignotifications = new ConfigNotifications();
 		FileConfiguration config = Core.getInstance().getConfig();
 		ConfigurationSection section = config.getConfigurationSection("Config");
+		includeArmor = section.getBoolean("includeArmor");
 		statusAtivado = section.getString("status.ativado").replace("&", "§");
 		statusDesativado = section.getString("status.desativado").replace("&", "§");
 		for(String worldName : section.getStringList("worlds")) {

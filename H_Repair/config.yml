@@ -5,13 +5,16 @@
 #╚╝╚╝╚╝─╚═╝╚═╝╚══╝╚══╝╚╩═╝╚══╝
 #─────────────────────────────
 # Discord: https://discord.gg/u8gyeJgdj6
-# Permissions: H_Reparar.Adm, H_Reparar.Command, H_Reparar.Worlds
+# Permissions: H_Reparar.Adm, H_Reparar.Command, H_Reparar.Worlds, H_Reparar.FixAllCommand
 #=============================
 # Configuração geral do plugin:
 Config:
   
   # prefixo do seu servidor.
   tag: "&7[Reparar]"
+  
+  # Incluir o reparo da armadura
+  includeArmor: true
   
   # Configuração geral dos status.
   status:

@@ -21,6 +21,7 @@ import me.hawkcore.utils.Save;
 import me.hawkcore.utils.boosbar.BossBar;
 import me.hrepair.Core;
 import me.hrepair.objects.configs.ConfigDurability;
+import me.hrepair.objects.configs.ConfigGeral;
 import me.hrepair.objects.configs.ConfigNotifications;
 import me.hrepair.objects.managers.Manager;
 import me.hrepair.objects.managers.NotificationManager;
@@ -98,6 +99,12 @@ public class PlayerRepair {
 		for(ItemStack item : inv.getContents()) {
 			if (!API.get().canRepair(item)) continue;
 			items.add(item);
+		}
+		if (ConfigGeral.get().getIncludeArmor()) {
+			for(ItemStack item : p.getInventory().getArmorContents()) {
+				if (!API.get().canRepair(item)) continue;
+				items.add(item);
+			}
 		}
 		return items;
 	}
