@@ -1,5 +1,5 @@
 name: H_Repair
-version: 0.1
+version: 0.2
 author: lHawk_
 main: me.hrepair.Core
 depend: [HawkCore]
