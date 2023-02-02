@@ -142,6 +142,13 @@ public class PlayerRepair {
 		if (p == null) return;
 		item.setDurability((short)0);
 		p.updateInventory();
+		NotificationManager manager = NotificationManager.get();
+		HashMap<Player, HashMap<Integer, List<ItemStack>>> map = manager.getMap();
+		if (!map.containsKey(p)) return;
+		for(int i : map.get(p).keySet()) {
+			List<ItemStack> items = map.get(p).get(i);
+			if (items.contains(item)) items.remove(item);
+		}
 	}
 	
 	public void repairAllItens() {
@@ -150,6 +157,10 @@ public class PlayerRepair {
 		List<ItemStack> items = getItems();
 		items.forEach(item -> item.setDurability((short)0));
 		p.updateInventory();
+		NotificationManager manager = NotificationManager.get();
+		HashMap<Player, HashMap<Integer, List<ItemStack>>> map = manager.getMap();
+		if (!map.containsKey(p)) return;
+		map.remove(p);
 	}
 	
 	public void repairAllItens(int percent) {
@@ -161,6 +172,10 @@ public class PlayerRepair {
 			item.setDurability((short)0);
 		});
 		p.updateInventory();
+		NotificationManager manager = NotificationManager.get();
+		HashMap<Player, HashMap<Integer, List<ItemStack>>> map = manager.getMap();
+		if (!map.containsKey(p)) return;
+		map.remove(p);
 	}
 	
 	@SuppressWarnings("deprecation")
